@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SensAi Chat</title>
+
+    <link rel="stylesheet" href="style/main.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet">
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="script/cookies.js"></script>
+
+<!--     <link rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/default.min.css">
+    <link rel="stylesheet" href="style/githubTheme.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
+    <script src="https://unpkg.com/highlightjs-copy/dist/highlightjs-copy.min.js"></script>
+    <link rel="stylesheet"
+    href="https://unpkg.com/highlightjs-copy/dist/highlightjs-copy.min.css"/> -->
+     <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.0.1/highlight.min.js"></script>
+    <script src="https://unpkg.com/highlightjs-copy@1.0.3/dist/highlightjs-copy.min.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/highlightjs-copy@1.0.3/dist/highlightjs-copy.min.css"
+    />
+    <link rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/default.min.css">
+    <link rel="stylesheet" href="style/githubTheme.css">
+
+    <script>
+        var user_stat = null;
+        user_info = {
+            icon: "assets/icons/user.png",
+            name: "anonymous",
+            temp: "0.5"
+        };
+        if(getCookie("user") !== ""){
+            user_stat = true;
+        }else{  user_stat = false;  }
+    </script>
+</head>
+<body>
+    <div id="connect-container">
+        <div id="connect-center">
+            <div class="rel-cover">
+                <div id="connect">
+                    <div class="rel-cover">
+                        <div id="connect-header">
+                            <span>Login to DeepNight</span>
+                        </div>
+                        <div id="connect-body">
+                            <div id="google-connect" class="connect-sso-opt">
+                                <img src="assets/icons/google.png" alt="" class="connect-opt-icon">
+                                <span>Continue with Google</span>
+                            </div>
+                            <div class="connect-gap"></div>
+                            <div id="microsoft-connect" class="connect-sso-opt">
+                                <img src="assets/icons/microsoft.png" alt="" class="connect-opt-icon">
+                                <span>Continue with Microsoft</span>
+                            </div>
+                            <div class="connect-gap"></div>
+                        </div>
+                        <div id="connect-footer"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="container">
+        <div id="left-menu-bar">
+            <div id="menu-icon-container">
+                <div class="rel-cover">
+                    <img src="assets/icons/menu.png" alt="menu icon" id="menu-icon">
+                </div>
+            </div>
+            <div id="tools-icons-container">
+                <div class="tools-icon-cover">
+                    <img src="assets/icons/option.png" alt="Apps" class="tool-icon" sens="apps">
+                </div>
+                <div class="tools-icon-cover">
+                    <img src="assets/icons/bar-chart.png" alt="Apps" class="tool-icon" sens="apps">
+                </div>
+                <div class="tools-icon-cover">
+                    <img src="assets/icons/search.png" alt="Apps" class="tool-icon" sens="apps">
+                </div>
+                <div class="tools-icon-cover">
+                    <img src="assets/icons/folder.png" alt="Apps" class="tool-icon" sens="apps">
+                </div>
+                <div class="tools-icon-cover">
+                    <img src="assets/icons/wallet(1).png" alt="Apps" class="tool-icon" sens="apps">
+                </div>
+            </div>
+        </div>
+        <div id="root">
+            <div id="header">
+                <img src="assets/logo/sensai.png" alt="" id="logo">
+                <img src="assets/icons/user.png" alt="" id="user-profile-pic">
+                <img src="assets/icons/bell.png" alt="" id="notification-icon">
+            </div>
+            <div id="containers">
+                <div id="menu-container">
+                    <div id="menu-header">
+                        <span id="mhl">Chats</span>
+                        <img src="assets/icons/plus.png" alt="" title="New Conversation" id="new-convo">
+                    </div>
+                    <div id="delete-convo">
+                            <div class="rel-cover">
+                                <div>Delete Chat</div>
+                            </div>
+                        </div>
+                    <div id="conversations-container">
+                        <span id="no-convo-message">
+                            There are no previous conversations to show.
+                        </span>
+<!--                         <div class="conversation-model" chat-id="">
+                            <div class="conversation-title" >
+                                Hello World
+                            </div>
+                        </div>
+                        <div class="conversation-model" chat-id="">
+                            <div class="conversation-title" >
+                                Hello World
+                            </div>
+                        </div> -->
+                    </div>
+                    <div id="feedback-container">
+                        <div id="feedback-button">
+                            <div class="rel-cover">
+                                <img src="assets/icons/chat.png" alt="" id="fbk-icon">
+                                <span id="fbk-text">Submit Feedback</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="chat-container">
+                    <div id="chat-title-change-div">
+                        <div class="rel-cover">
+                            <img src="assets/icons/close.png" alt="" id="close-chat-title-edit-div">
+                        </div>
+                    </div>
+                    <div id="chatbox">
+                        <div id="chat-title-container">
+                            <div id="chat-title">New Chat</div>
+<!--                             <img src="assets/icons/pencil.png" alt="" id="edit-chat-pencil"> -->
+                        </div>
+                        <div id="chat-holder">
+                            <!-- <div id="ai-icon-bar"></div> -->
+                            <div id="chats-container"></div>
+                            <!-- <div id="client-icon-bar"></div> -->
+                        </div>
+                    </div>
+                    <div id="input-box">
+                        <div id="input">
+                            <div class="rel-cover">
+                                <input type="text" placeholder="Write a message..." id="message-input-field">
+                                <img src="assets/icons/paper-plane.png" alt="" id="send">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="tools-container">
+                    <div id="tools-container-header"></div>
+                    <div id="tools-holder">
+                        <div id="temp-control-header">Choose Conversation Style</div>
+                        <div id="temp-control">
+                            <div id="temperature_control">
+                                <div class="temp-control-unit" temp="1">
+                                    <img src="assets/icons/creative.png" alt="">
+                                    <span>Creative</span>
+                                </div>
+                                <div class="temp-control-unit active-temp" temp="0.5">
+                                    <img src="assets/icons/balance.png" alt="">
+                                    <span>Balanced</span>
+                                </div>
+                                <div class="temp-control-unit" temp="0">
+                                    <img src="assets/icons/precision.png" alt="">
+                                    <span>Precise</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="processes-balance">
+                            <div id="pb-title">
+                                <span>Balance</span>
+                                <span id="balVal"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="privacy-support-container">
+                        <div id="psc">
+                            <div class="rel-cover">
+                                <div id="pscHeading">Privacy and Support</div>
+                                <div id="pscDesc">Check out our privacy policies or Reach out to our support team.</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function getUserID(email){
+            fetch(`/token?email=${email}`)
+            .then(result => result.text())
+            .then((result)=>{
+                if(result !== "true"){
+                setCookie("user", result, 3);
+                console.log(result);
+                createUser(result, email, user_info.icon, user_info.name);
+                }else{
+                getUserDataFromLocal(email, "email");
+                }
+            })
+            .catch((error)=>{
+                console.log("Error fetching token: "+error);
+            })
+        }
+
+        function createUser(id, email, photo, name){
+        fetch(`/register?email=${email}&id=${id}&photo=${photo}&name=${name}`)
+        .then(result => result.text())
+        .catch((error)=>{
+            console.log("Error: "+error);
+        })
+
+
+        var ajxCall = new XMLHttpRequest();
+        ajxCall.onreadystatechange = ()=>{
+            if(this.readyState == 4 && this.status == 200){
+                console.log(this.responseText())
+            }
+        }
+            ajxCall.open("GET", `https://sensai.slxdev.tech/register?email=${email}&id=${id}&user=${name}`, true)
+            ajxCall.send()
+        }
+
+        function getUserDataFromLocal(user, format){
+        fetch(`/getUser/?format=${format}&user=${user}`)
+        .then(response => response.text())
+        .then((response)=>{
+            response = JSON.parse(response);
+            console.log(response);
+            setCookie("user", response.userid, 3);
+            user_info.icon = response.photo;
+            user_info.name = response.name;
+            document.getElementById("user-profile-pic").src = response.photo;
+        })
+        }
+
+      
+    </script>
+
+    <script src="script/main.js"></script>
+    <script type="module" src="script/firebase.js"></script>
+    
+    <script>
+        // hljs.highlightAll();
+        hljs.debugMode();
+        hljs.addPlugin(new CopyButtonPlugin());
+      hljs.highlightAll();
+    </script>
+    <script>
+        document.getElementById("connect-container").style.display = "none";
+        setInterval(()=>{
+            if(user_stat == false){
+                document.getElementById("connect-container").style.display = "block";
+            }
+        }, 1000);
+
+        if(user_stat == false){
+            document.getElementById("connect-container").style.display = "block";
+        }else{
+            getUserDataFromLocal(getCookie("user"), "id");
+        }
+    </script>
+</body>
+</html>
